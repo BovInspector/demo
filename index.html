@@ -73,7 +73,7 @@
 <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compile testcase to LLVM bitcode</h3>
 
 <p> KLEE is built on top of LLVM. The first steps are to get a working LLVM installation.You may install llvm-gccand build LLVM 2.9.To run a program with KLEE, you first compile it to LLVM bitcode using llvm-gcc to generate the LLVM bitcode file src.bc.You may run:<br></p>
-<p><code>llvm-gcc --emit-llvm -c -g src.c</code></p>
+<code> $  llvm-gcc --emit-llvm -c -g src.c</code>
 <h3>
 <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generate warning paths</h3>
 
@@ -84,9 +84,9 @@
 
 and additional input file GuideSrc.txt.To run KLEE on the bitcode file simply execute:<br>
 
-<code>klee src.bc</code><br>
-Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt which should be copyed the to directory where the source file is.
-<code>klee --guided-execution src.bc</code><br>
+<code> $  klee src.bc</code><br>
+Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt which should be copyed the to directory where the source file is.<br>
+<code>  $  klee --guided-execution src.bc</code><br>
 There are three paths through our simple function.
 
 <h3>
