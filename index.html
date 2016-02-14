@@ -61,12 +61,12 @@
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extract the results of Fortify</h3>
 <p>Use <code>./fvdlParser audit.fvdl</code> to get static buffer overflow warnings. We save these warnings in the file checklist_bufferoverflow.</p>
 <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">0</span>
-<span class="k">src.c	4 DEF</span>
-<span class="k">src.c	11 BOF</span>
+<span class="k">src.c	4  DEF</span>
+<span class="k">src.c	11  BOF</span>
 <span class="k">END_PATH</span>
 <span class="k">1</span>
-<span class="k">src.c	4 DEF</span>
-<span class="k">src.c	18 BOF</span>
+<span class="k">src.c	4  DEF</span>
+<span class="k">src.c	18  BOF</span>
 <span class="k">END_PATH</span></code></pre></div>
 <p>There are two static buffer overflow warnings in the sample.</p>
 <h3>
@@ -79,12 +79,15 @@
 
 <p>Pass framework is a very important part of the LLVM system.LLVM optimization and conversion work is done by several Pass. Like assembly line operations, each pass completes a specific optimization.buildCFG.so is a shared object complied by LLVM pass we relized which we used to build CFG ,analyse reachablity in the graph and get warning path set.
 
-Use following command to generate GuideSrc.txt. GuideSrc.txt consists of warning paths.We use opt to dynamic load shared object buildCFG.so.<br>
+We use opt to dynamic load shared object buildCFG.so.Use following command to generate GuideSrc.txt.<br>
 
-<code>opt –load ./buildCFG.so –buildCFG 
+<code> &nbsp opt –load ./buildCFG.so –buildCFG 
 –targetList=./checklist_bufferoverflow /dev/null </code><br>
 
+GuideSrc.txt is consist of several warning paths.A warning path is consist of branches from entry to the position in where may occur buffer  in the testcase.In this sample,the GuideSrc.txt is:<br>
 
+<code> &nbsp src.c 11 </code>
+<code> &nbsp src.c 17 </code>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Run klee</h3>
@@ -92,9 +95,9 @@ Use following command to generate GuideSrc.txt. GuideSrc.txt consists of warning
 To run KLEE on the bitcode file simply execute:<br>
 
 <code>  &nbsp  klee src.bc</code><br>
-Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt which should be copyed the to directory where the source file is.<br>
+To use klee to target guided execute and inspect buffer overflow,you may run klee with command line option --guided-execution and additional input file GuideSrc.txt which should be copyed the to directory where the source file is.<br>
 <code> &nbsp klee --guided-execution src.bc</code><br>
-There are four paths through our simple function.
+There are four paths through our simple function.Klee only execute two of them in static warning.BovInspector report line 11 is false warning and line 17 is true warning in report_NOTBFO.txt and  report_BFO.txt.
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Repair</h3>
