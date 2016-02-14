@@ -33,14 +33,29 @@
       <section id="main_content" class="inner">
         <h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">get_sign</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-c" data-lang="c">
+<span class="k">#include &lt stdio.h &gt </span>
+<span class="k">#include &lt string.h &gt </span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-  <span class="k">else</span> 
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">char buf[2];</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">char * src = "yes";</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="n">src[0]</span> <span class="o">==</span> <span class="mi">'y'</span><span class="p">)</span>
+    <span class="k">printf("recieved!\n");</span>
+  <span class="k">else{</span>
+    <span class="k">strcpy(buf, src);</span>
+    <span class="kt">printf("%s\n", buf);</span>
+  <span class="k">}</span>
+  
+  <span class="k">src = "nooooo";</span>
+  
+  <span class="k">if(src[0] == 'n'){</span> 
+    <span class="k">strcpy(buf, src);</span> 
+    <span class="kt">printf("%s\n", buf);</span>
+  <span class="k">}</span> 
+  <span class="k">else</span>
+    <span class="k">return 0;</span> 
 <span class="p">}</span></code></pre></div>
 <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
 
