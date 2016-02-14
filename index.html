@@ -68,6 +68,7 @@
 <span class="k">src.c	4 DEF</span>
 <span class="k">src.c	18 BOF</span>
 <span class="k">END_PATH</span></code></pre></div>
+<p>There are two static buffer overflow warnings in the sample.</p>
 <h3>
 <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compile testcase to LLVM bitcode</h3>
 
@@ -81,7 +82,7 @@
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Run klee</h3>
 
-<p>Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt.</p>
+<p>Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt.There are three paths through our simple function.</p>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Repair</h3>
