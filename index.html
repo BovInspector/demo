@@ -82,10 +82,11 @@
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Run klee</h3>
 
-Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt.To run KLEE on the bitcode file simply execute
+and additional input file GuideSrc.txt.To run KLEE on the bitcode file simply execute:<br>
 
-<code>klee get_sign.o</code><br>
-
+<code>klee src.bc</code><br>
+Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt which should be copyed the to directory where the source file is.
+<code>klee --guided-execution src.bc</code><br>
 There are three paths through our simple function.
 
 <h3>
