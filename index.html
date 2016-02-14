@@ -73,21 +73,28 @@
 <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compile testcase to LLVM bitcode</h3>
 
  KLEE is built on top of LLVM. The first steps are to get a working LLVM installation.You may install llvm-gccand build LLVM 2.9.To run a program with KLEE, you first compile it to LLVM bitcode using llvm-gcc to generate the LLVM bitcode file src.bc.You may run:<br>
-<code>   &nbsp &nbsp llvm-gcc --emit-llvm -c -g src.c</code>
+<code>   &nbsp llvm-gcc --emit-llvm -c -g src.c</code>
 <h3>
 <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generate warning paths</h3>
 
-<p>buildCFG.so is a LLVM pass which we used to build CFG ,analyse reachablity in the graph and get warning path set.<code>opt –load ./buildCFG.so –buildCFG –targetList=./checklist_bufferoverflow /dev/null </code>to generate GuideSrc.txt. GuideSrc.txt consists of warning paths.</p>
+<p>Pass framework is a very important part of the LLVM system.LLVM optimization and conversion work is done by several Pass. Like assembly line operations, each pass completes a specific optimization.buildCFG.so is a shared object complied by LLVM pass we relized which we used to build CFG ,analyse reachablity in the graph and get warning path set.
+
+Use following command to generate GuideSrc.txt. GuideSrc.txt consists of warning paths.We use opt to dynamic load shared object buildCFG.so.<br>
+
+<code>opt –load ./buildCFG.so –buildCFG 
+–targetList=./checklist_bufferoverflow /dev/null </code><br>
+
+
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Run klee</h3>
 
 To run KLEE on the bitcode file simply execute:<br>
 
-<code>   klee src.bc</code><br>
+<code>  &nbsp  klee src.bc</code><br>
 Use klee to inspect buffer overflows with command line option --guided-execution and additional input file GuideSrc.txt which should be copyed the to directory where the source file is.<br>
-<code> klee --guided-execution src.bc</code><br>
-There are three paths through our simple function.
+<code> &nbsp klee --guided-execution src.bc</code><br>
+There are four paths through our simple function.
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Repair</h3>
